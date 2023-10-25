@@ -1,12 +1,20 @@
+import os # operating system(作業系統模組)
+
 #讀取檔案
 products= []
-with open('products.csv', 'r') as f :
-	for line in f:
-		if '商品, 價格' in line:
-			continue
-		name, price =line.strip().split(',') #用.split(',')做分隔 = , .strip()除換行符號=(\n)
-		products.append([name, price])
-print(products)
+if os.path.isfile('products.csv'): #os.path.isfile()檢查檔案在不在
+	print('yes')
+	with open('products.csv', 'r') as f :
+		for line in f:
+			if '商品, 價格' in line:
+				continue
+			name, price =line.strip().split(',') #用.split(',')做分隔 = , .strip()除換行符號=(\n)
+			products.append([name, price])
+	print(products)
+
+else:
+	print('no')
+
 
 #讓使用者輸入
 while True:
